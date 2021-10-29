@@ -1,3 +1,6 @@
+
+ccc
+
 #! /bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:$PATH
 export PATH
