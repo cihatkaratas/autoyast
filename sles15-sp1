@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <bootloader>
+    <global>
+      <activate>true</activate>
+      <append>resume=/dev/sda1 splash=silent quiet showopts crashkernel=127M,high crashkernel=72M,low</append>
+      <boot_boot>false</boot_boot>
+      <boot_extended>false</boot_extended>
+      <boot_mbr>false</boot_mbr>
+      <boot_root>true</boot_root>
+      <generic_mbr>true</generic_mbr>
+      <gfxmode>auto</gfxmode>
+      <os_prober>false</os_prober>
+      <terminal>gfxterm</terminal>
+      <timeout config:type="integer">8</timeout>
+      <xen_append>crashkernel=127M,high crashkernel=72M,low</xen_append>
+      <xen_kernel_append>vga=gfx-1024x768x16 crashkernel=199M\&lt;4G</xen_kernel_append>
+    </global>
+    <loader_type>grub2</loader_type>
+  </bootloader>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <firewall>
+    <default_zone>public</default_zone>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+    <log_denied_packets>off</log_denied_packets>
+    <start_firewall config:type="boolean">false</start_firewall>
+    <zones config:type="list"/>
+  </firewall>
+  <general>
+    <ask-list config:type="list"/>
+    <mode>
+      <confirm config:type="boolean">false</confirm>
+      <ntp_sync_time_before_installation>192.168.108.10</ntp_sync_time_before_installation>
+    </mode>
+    <proposals config:type="list"/>
+    <signature-handling>
+      <accept_file_without_checksum config:type="boolean">true</accept_file_without_checksum>
+      <accept_non_trusted_gpg_key config:type="boolean">true</accept_non_trusted_gpg_key>
+      <accept_unknown_gpg_key config:type="boolean">true</accept_unknown_gpg_key>
+      <accept_unsigned_file config:type="boolean">true</accept_unsigned_file>
+      <accept_verification_failed config:type="boolean">false</accept_verification_failed>
+      <import_gpg_key config:type="boolean">true</import_gpg_key>
+    </signature-handling>
+    <storage>
+      <start_multipath config:type="boolean">false</start_multipath>
+    </storage>
+  </general>
+  <kdump>
+    <add_crash_kernel config:type="boolean">true</add_crash_kernel>
+    <crash_kernel config:type="list">
+      <listentry>127M,high</listentry>
+      <listentry>72M,low</listentry>
+    </crash_kernel>
+    <crash_xen_kernel>199M\&lt;4G</crash_xen_kernel>
+    <general>
+      <KDUMPTOOL_FLAGS/>
+      <KDUMP_COMMANDLINE/>
+      <KDUMP_COMMANDLINE_APPEND/>
+      <KDUMP_CONTINUE_ON_ERROR>true</KDUMP_CONTINUE_ON_ERROR>
+      <KDUMP_COPY_KERNEL>yes</KDUMP_COPY_KERNEL>
+      <KDUMP_CPUS/>
+      <KDUMP_DUMPFORMAT>lzo</KDUMP_DUMPFORMAT>
+      <KDUMP_DUMPLEVEL>31</KDUMP_DUMPLEVEL>
+      <KDUMP_FREE_DISK_SIZE>64</KDUMP_FREE_DISK_SIZE>
+      <KDUMP_HOST_KEY/>
+      <KDUMP_IMMEDIATE_REBOOT>yes</KDUMP_IMMEDIATE_REBOOT>
+      <KDUMP_KEEP_OLD_DUMPS>5</KDUMP_KEEP_OLD_DUMPS>
+      <KDUMP_KERNELVER/>
+      <KDUMP_NETCONFIG>auto</KDUMP_NETCONFIG>
+      <KDUMP_NET_TIMEOUT>30</KDUMP_NET_TIMEOUT>
+      <KDUMP_NOTIFICATION_CC/>
+      <KDUMP_NOTIFICATION_TO/>
+      <KDUMP_POSTSCRIPT/>
+      <KDUMP_PRESCRIPT/>
+      <KDUMP_REQUIRED_PROGRAMS/>
+      <KDUMP_SAVEDIR>/var/crash</KDUMP_SAVEDIR>
+      <KDUMP_SMTP_PASSWORD/>
+      <KDUMP_SMTP_SERVER/>
+      <KDUMP_SMTP_USER/>
+      <KDUMP_TRANSFER/>
+      <KDUMP_VERBOSE>3</KDUMP_VERBOSE>
+      <KEXEC_OPTIONS/>
+    </general>
+  </kdump>
+  <keyboard>
+    <keymap>german</keymap>
+  </keyboard>
+  <language>
+    <language>en_US</language>
+    <languages/>
+  </language>
+  <login_settings/>
+  <networking>networking</networking>
+  <partitioning>partitioning</partitioning>
+  <ntp-client>
+   <ntp_policy>auto</ntp_policy>
+   <ntp_servers config:type="list">
+    <ntp_server>
+     <iburst config:type="boolean">false</iburst>
+     <address>sumacka01.ckalab.suse.com</address>
+     <offline config:type="boolean">false</offline>
+    </ntp_server>
+   </ntp_servers>
+   <ntp_sync>systemd</ntp_sync>
+  </ntp-client>
+  <report>
+    <errors>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </errors>
+    <messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </messages>
+    <warnings>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </warnings>
+    <yesno_messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </yesno_messages>
+  </report>
+  <services-manager>
+    <default_target>multi-user</default_target>
+    <services>
+      <disable config:type="list"/>
+      <enable config:type="list">
+        <service>sshd</service>
+      </enable>
+      <on_demand config:type="list">
+        <listentry>iscsid</listentry>
+      </on_demand>
+    </services>
+  </services-manager>
+  <software>
+    <image/>
+    <install_recommended config:type="boolean">true</install_recommended>
+    <instsource/>
+    <products config:type="list">
+      <product>SLES</product>
+    </products>
+  </software>
+  <ssh_import>
+    <copy_config config:type="boolean">false</copy_config>
+    <import config:type="boolean">false</import>
+  </ssh_import>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>Europe/Berlin</timezone>
+  </timezone>
+  <user_defaults>
+    <expire/>
+    <group>100</group>
+    <groups/>
+    <home>/home</home>
+    <inactive>-1</inactive>
+    <no_groups config:type="boolean">true</no_groups>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask>022</umask>
+  </user_defaults>
+  <users config:type="list">
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>root</fullname>
+      <gid>0</gid>
+      <home>/root</home>
+      <shell>/bin/bash</shell>
+      <uid>0</uid>
+      <user_password>$1$ooR6hIWR$XbMjLga.qrYfZ8Bh8NXB10</user_password>
+      <username>root</username>
+    </user>
+  </users>
+  <scripts>
+    <pre-scripts config:type="list">
+        <script>
+          <location>http://sumacka01.ckalab.suse.com/pub/install/autoyast/prescript-sles15-sp1.sh</location>
+          <interpreter>shell</interpreter>
+          <feedback config:type="boolean">true</feedback>
+          <debug config:type="boolean">false</debug>
+        </script>
+        <script>
+          <location>http://sumacka01.ckalab.suse.com/pub/install/autoyast/prescript-partition-sles15-sp1.sh</location>
+          <interpreter>shell</interpreter>
+          <feedback config:type="boolean">false</feedback>
+          <debug config:type="boolean">false</debug>
+        </script>
+    </pre-scripts>
+    <init-scripts config:type="list">
+      <listentry>
+        <interpreter>shell</interpreter>
+        <location>
+          http://sumacka01.ckalab.suse.com/pub/bootstrap/dc1-sles15-sp1-prod.sh
+        </location>
+      </listentry>
+      <listentry>
+        <filename>zz_patch_setup</filename>
+        <interpreter>shell</interpreter>
+        <source><![CDATA[#!/bin/bash
+#zypper -n in tcpdump
+zypper removerepo \
+SLES15-SP1-15.1-0 \
+http://sumacka01.ckalab.suse.com/pub/distribution/sle-15-sp1-packages/dvd1/ \
+dc1-sles15-sp1-prod-sle-product-sles15-sp1-updates_channel \
+dc1-sles15-sp1-prod-sle-module-basesystem15-sp1-updates_channel \
+dc1-sles15-sp1-prod-sle-module-server-applications15-sp1-pool_channel \
+dc1-sles15-sp1-prod-sle-module-server-applications15-sp1-updates_channel \
+prod-sles15-sp1_suse_manager_tools_update_channel
+#sleep 90
+#salt-call state.apply
+        ]]></source>
+      </listentry>
+    </init-scripts>
+    <post-scripts config:type="list">
+      <script>
+        <network_needed config:type="boolean">true</network_needed>
+        <filename>set-ntptime</filename>
+        <interpreter>shell</interpreter>
+        <source><![CDATA[#!/bin/bash
+# set Time
+/usr/sbin/chronyd -q 'server 192.168.108.10 iburst'
+#/usr/bin/chronyc -a makestep
+/sbin/hwclock --systohc --localtime
+exit 0
+        ]]></source>
+	</script>
+    </post-scripts>
+  </scripts>
+</profile>

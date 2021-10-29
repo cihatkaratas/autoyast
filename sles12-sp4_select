@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <bootloader>
+    <global>
+      <activate>true</activate>
+      <append>resume=/dev/sda1 splash=silent quiet showopts crashkernel=127M,high crashkernel=72M,low</append>
+      <boot_boot>false</boot_boot>
+      <boot_extended>false</boot_extended>
+      <boot_mbr>false</boot_mbr>
+      <boot_root>true</boot_root>
+      <generic_mbr>true</generic_mbr>
+      <gfxmode>auto</gfxmode>
+      <hiddenmenu>false</hiddenmenu>
+      <os_prober>false</os_prober>
+      <terminal>gfxterm</terminal>
+      <timeout config:type="integer">8</timeout>
+      <trusted_grub>false</trusted_grub>
+      <xen_append>crashkernel=127M,high crashkernel=72M,low</xen_append>
+      <xen_kernel_append>vga=gfx-1024x768x16 crashkernel=199M\&lt;4G</xen_kernel_append>
+    </global>
+    <loader_type>grub2</loader_type>
+  </bootloader>
+  <ca_mgm>
+    <CAName>YaST_Default_CA</CAName>
+    <ca_commonName>YaST Default CA (ckalab.suse.com)</ca_commonName>
+    <country>US</country>
+    <locality/>
+    <organisation/>
+    <organisationUnit/>
+    <password>ENTER PASSWORD HERE</password>
+    <server_email>postmaster@ckalab.suse.com</server_email>
+    <state/>
+    <takeLocalServerName config:type="boolean">true</takeLocalServerName>
+  </ca_mgm>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <firewall>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+    <start_firewall config:type="boolean">false</start_firewall>
+  </firewall>
+  <general>
+  <self_update config:type="boolean">false</self_update>
+  <ask-list config:type="list">
+    <ask>
+      <title>Filesystem Selection</title>
+      <question>Choose Filesystem</question>
+      <dialog config:type="integer">10</dialog>
+      <element config:type="integer">1</element>
+      <stage>initial</stage>
+      <default>modified_uefi.xml</default>
+      <selection config:type="list">
+        <entry>
+          <value>modified_lvm.xml</value>
+          <label>lvm partition</label>
+        </entry>
+        <entry>
+          <value>modified_uefi.xml</value>
+          <label>btrfs partition</label>
+        </entry>
+      </selection>
+      <script>
+         <filename>cpmodified.sh</filename>
+         <environment config:type="boolean">true</environment>
+         <source>
+      <![CDATA[
+cp /tmp/profile/$VAL /tmp/profile/modified.xml
+exit 0
+      ]]>
+         </source>
+         <debug config:type="boolean">false</debug>
+         <feedback config:type="boolean">false</feedback>
+        </script>
+    </ask>
+    <ask>
+      <title>SUSE Manager activation key</title>
+      <question>Select activation key</question>
+      <dialog config:type="integer">20</dialog>
+      <element config:type="integer">2</element>
+      <stage>initial</stage>
+      <default>prod-sles12-sp4</default>
+      <help>Please select the SUSE Manager activation key</help>
+      <selection config:type="list">
+        <entry>
+          <value>dc1-sles12-sp4-prod</value>
+          <label>SLES12-SP4 Production</label>
+        </entry>
+        <entry>
+          <value>dc1-sles12-sp4-test</value>
+          <label>SLES12-SP4 Test</label>
+        </entry>
+        <entry>
+          <value>dc1-sles12-sp4-dev</value>
+          <label>SLES12-SP4 Development</label>
+        </entry>
+        <entry>
+          <value>dc1-lp-sles12-sp4-prod</value>
+          <label>SLES12-SP4 LivePatching Production</label>
+        </entry>
+        <entry>
+          <value>dc1-lp-sles12-sp4-test</value>
+          <label>SLES12-SP4 LivePatching Test</label>
+        </entry>
+        <entry>
+          <value>dc1-lp-sles12-sp4-dev</value>
+          <label>SLES12-SP4 LivePatching Development</label>
+        </entry>
+      </selection>
+      <script>
+         <filename>suma_activation.sh</filename>
+         <environment config:type="boolean">true</environment>
+         <source>
+      <![CDATA[#!/bin/bash
+ACTIVATIONKEY=$VAL
+CHANNEL=`echo $VAL`
+DISTRIBUTION=`echo $VAL|cut -d '-' -f 2-3`
+sed -i -e "s/@@SUMAACTIVATIONKEY@@/$ACTIVATIONKEY/g" \
+-e "s/@@SUMACHANNEL@@/$CHANNEL/g" \
+-e "s/@@SUMADISTRIBUTION@@/$DISTRIBUTION/g" /tmp/profile/modified.xml
+exit 0
+      ]]>
+         </source>
+      </script>
+    </ask>
+   </ask-list>
+    <mode>
+      <confirm config:type="boolean">false</confirm>
+      <ntp_sync_time_before_installation>192.168.108.10</ntp_sync_time_before_installation>
+    </mode>
+    <proposals config:type="list"/>
+    <signature-handling>
+      <accept_file_without_checksum config:type="boolean">true</accept_file_without_checksum>
+      <accept_non_trusted_gpg_key config:type="boolean">true</accept_non_trusted_gpg_key>
+      <accept_unknown_gpg_key config:type="boolean">true</accept_unknown_gpg_key>
+      <accept_unsigned_file config:type="boolean">true</accept_unsigned_file>
+      <accept_verification_failed config:type="boolean">false</accept_verification_failed>
+      <import_gpg_key config:type="boolean">true</import_gpg_key>
+    </signature-handling>
+    <storage>
+      <partition_alignment config:type="symbol">align_optimal</partition_alignment>
+      <start_multipath config:type="boolean">false</start_multipath>
+    </storage>
+  </general>
+  <kdump>
+    <add_crash_kernel config:type="boolean">true</add_crash_kernel>
+    <crash_kernel config:type="list">
+      <listentry>127M,high</listentry>
+      <listentry>72M,low</listentry>
+    </crash_kernel>
+    <crash_xen_kernel>199M\&lt;4G</crash_xen_kernel>
+    <general>
+      <KDUMPTOOL_FLAGS/>
+      <KDUMP_COMMANDLINE/>
+      <KDUMP_COMMANDLINE_APPEND/>
+      <KDUMP_CONTINUE_ON_ERROR>true</KDUMP_CONTINUE_ON_ERROR>
+      <KDUMP_COPY_KERNEL>yes</KDUMP_COPY_KERNEL>
+      <KDUMP_CPUS/>
+      <KDUMP_DUMPFORMAT>lzo</KDUMP_DUMPFORMAT>
+      <KDUMP_DUMPLEVEL>31</KDUMP_DUMPLEVEL>
+      <KDUMP_FREE_DISK_SIZE>64</KDUMP_FREE_DISK_SIZE>
+      <KDUMP_HOST_KEY/>
+      <KDUMP_IMMEDIATE_REBOOT>yes</KDUMP_IMMEDIATE_REBOOT>
+      <KDUMP_KEEP_OLD_DUMPS>5</KDUMP_KEEP_OLD_DUMPS>
+      <KDUMP_KERNELVER/>
+      <KDUMP_NETCONFIG>auto</KDUMP_NETCONFIG>
+      <KDUMP_NET_TIMEOUT>30</KDUMP_NET_TIMEOUT>
+      <KDUMP_NOTIFICATION_CC/>
+      <KDUMP_NOTIFICATION_TO/>
+      <KDUMP_POSTSCRIPT/>
+      <KDUMP_PRESCRIPT/>
+      <KDUMP_REQUIRED_PROGRAMS/>
+      <KDUMP_SAVEDIR>/var/crash</KDUMP_SAVEDIR>
+      <KDUMP_SMTP_PASSWORD/>
+      <KDUMP_SMTP_SERVER/>
+      <KDUMP_SMTP_USER/>
+      <KDUMP_TRANSFER/>
+      <KDUMP_VERBOSE>3</KDUMP_VERBOSE>
+      <KEXEC_OPTIONS/>
+    </general>
+  </kdump>
+  <keyboard>
+    <keymap>german</keymap>
+  </keyboard>
+  <language>
+    <language>en_US</language>
+    <languages/>
+  </language>
+  <login_settings/>
+  <networking>networking</networking>
+  <partitioning>partitioning</partitioning>
+  <ntp-client>
+    <ntp_policy>auto</ntp_policy>
+    <peers config:type="list">
+      <peer>
+        <address>sumacka01.ckalab.suse.com</address>
+        <type>server</type>
+      </peer>
+    </peers>
+    <start_at_boot config:type="boolean">true</start_at_boot>
+    <start_in_chroot config:type="boolean">false</start_in_chroot>
+    <sync_interval config:type="integer">5</sync_interval>
+    <synchronize_time config:type="boolean">false</synchronize_time>
+  </ntp-client>
+  <report>
+    <errors>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </errors>
+    <messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </messages>
+    <warnings>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </warnings>
+    <yesno_messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </yesno_messages>
+  </report>
+  <services-manager>
+    <default_target>multi-user</default_target>
+    <services>
+      <disable config:type="list"/>
+      <enable config:type="list">
+        <service>sshd</service>
+      </enable>
+    </services>
+  </services-manager>
+  <software>software</software>
+  <ssh_import>
+    <copy_config config:type="boolean">false</copy_config>
+    <import config:type="boolean">false</import>
+  </ssh_import>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>Europe/Berlin</timezone>
+  </timezone>
+  <user_defaults>
+    <expire/>
+    <group>100</group>
+    <groups/>
+    <home>/home</home>
+    <inactive>-1</inactive>
+    <no_groups config:type="boolean">true</no_groups>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask>022</umask>
+  </user_defaults>
+  <users config:type="list">
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>root</fullname>
+      <gid>0</gid>
+      <home>/root</home>
+      <shell>/bin/bash</shell>
+      <uid>0</uid>
+      <user_password>$1$ooR6hIWR$XbMjLga.qrYfZ8Bh8NXB10</user_password>
+      <username>root</username>
+    </user>
+  </users>
+  <scripts>
+    <pre-scripts config:type="list">
+        <script>
+          <location>http://sumacka01.ckalab.suse.com/pub/install/autoyast/prescript-sles12-sp4_select.sh</location>
+          <interpreter>shell</interpreter>
+          <feedback config:type="boolean">true</feedback>
+          <debug config:type="boolean">false</debug>
+        </script>
+        <script>
+          <location>http://sumacka01.ckalab.suse.com/pub/install/autoyast/prescript-partition-sles12-sp4_select.sh</location>
+          <interpreter>shell</interpreter>
+          <feedback config:type="boolean">false</feedback>
+          <debug config:type="boolean">false</debug>
+        </script>
+    </pre-scripts>
+    <init-scripts config:type="list">
+      <script>
+        <filename>suma_registration.sh</filename>
+	      <interpreter>shell</interpreter>
+        <location>
+        http://sumacka01.ckalab.suse.com/pub/bootstrap/@@SUMAACTIVATIONKEY@@.sh
+        </location>
+      </script>
+      <script>
+        <filename>zz_patch_setup</filename>
+        <interpreter>shell</interpreter>
+        <source><![CDATA[#!/bin/bash
+#zypper -n in tcpdump
+zypper removerepo \
+SLES12-SP4-12.4-0 \
+@@SUMACHANNEL@@_suse_manager_tools_update_channel \
+@@SUMACHANNEL@@_container_module_update_channel \
+@@SUMACHANNEL@@_container_module_pool_channel \
+@@SUMACHANNEL@@_installation_update_channel
+#sleep 90
+#salt-call state.apply
+        ]]></source>
+      </script>
+    </init-scripts>
+    <post-scripts config:type="list">
+      <script>
+        <network_needed config:type="boolean">true</network_needed>
+        <filename>set-ntptime</filename>
+        <interpreter>shell</interpreter>
+        <source><![CDATA[#!/bin/bash
+# set Time
+/usr/sbin/ntpdate -vu sumacka01.ckalab.suse.com
+/sbin/hwclock --systohc --localtime
+exit 0
+        ]]>
+      </source>
+	</script>
+    </post-scripts>
+  </scripts>
+</profile>

@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+	<report>
+    <errors>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </errors>
+    <messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">false</show>
+      <timeout config:type="integer">0</timeout>
+    </messages>
+    <warnings>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">false</show>
+      <timeout config:type="integer">0</timeout>
+    </warnings>
+    <yesno_messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </yesno_messages>
+  </report>
+  <general>
+    <mode>
+      <confirm config:type="boolean">false</confirm>
+			<ntp_sync_time_before_installation>192.168.108.10</ntp_sync_time_before_installation>
+    </mode>
+    <signature-handling>
+      <accept_unsigned_file config:type="boolean">true</accept_unsigned_file>
+    </signature-handling>
+  </general>
+	<add-on>
+		<add_on_products config:type="list">
+     <!-- <listentry>
+      <media_url>http://sumacka01.ckalab.suse.com/pub/distribution/sle-15-sp2-packages/dvd1/</media_url>
+      <product>sle-module-basesystem</product>
+      <product_dir>Module-Basesystem</product_dir>
+		</listentry>
+     <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-product-sles15-sp2-updates-x86_64/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-sle-product-sles15-sp2-updates_channel</name>
+       <product>SUSE Linux Enterprise Server 15 SP2</product>
+       <product_dir>/</product_dir>
+     </listentry>-->
+		 <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-product-sles15-sp2-updates-x86_64/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Product-SLES15-SP2-Updates for x86_64</name>
+       <product>SUSE Linux Enterprise Server 15 SP2</product>
+       <product_dir>/</product_dir>
+     </listentry>
+		 <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-module-basesystem15-sp2-pool-x86_64/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Module-Basesystem15-SP2-Pool for x86_64</name>
+       <product>Basesystem Module</product>
+       <product_dir/>
+     </listentry>
+     <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-module-basesystem15-sp2-updates-x86_64/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Module-Basesystem15-SP2-Updates for x86_64</name>
+       <product>Basesystem Module</product>
+       <product_dir>/</product_dir>
+     </listentry>
+		 <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-module-server-applications15-sp2-pool-x86_64/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Module-Server-Applications15-SP2-Pool for x86_64</name>
+       <product>Server Applications Module</product>
+       <product_dir/>
+     </listentry>
+     <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <alias>dc1-sles15-sp2-prod-sle-module-server-applications15-sp2-updates</alias>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-module-server-applications15-sp2-updates-x86_64/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Module-Server-Applications15-SP2-Updates for x86_64</name>
+       <product>Server Applications Module</product>
+       <product_dir>/</product_dir>
+     </listentry>
+		 <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-manager-tools15-updates-x86_64-sp2/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Manager-Tools15-Pool for x86_64 SP2</name>
+       <product>SUSE Manager Tools</product>
+       <product_dir>/</product_dir>
+     </listentry>
+     <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-manager-tools15-updates-x86_64-sp2/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Manager-Tools15-Updates for x86_64 SP2</name>
+       <product>SUSE Manager Tools</product>
+       <product_dir>/</product_dir>
+     </listentry>
+		 <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-module-python2-15-sp2-pool-x86_64/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Module-Python2-15-SP2-Pool for x86_64</name>
+       <product>Python 2 Module</product>
+       <product_dir>/</product_dir>
+     </listentry>
+		 <listentry>
+       <ask_on_error config:type="boolean">true</ask_on_error>
+       <media_url>http://sumacka01.ckalab.suse.com/ks/dist/child/dc1-sles15-sp2-prod-sle-module-python2-15-sp2-updates-x86_64/dc1-sles15-sp2-prod</media_url>
+       <name>dc1-sles15-sp2-prod-SLE-Module-Python2-15-SP2-Updates for x86_64</name>
+       <product>Python 2 Module</product>
+       <product_dir>/</product_dir>
+     </listentry>
+	 	</add_on_products>
+	 </add-on>
+   <software>
+     <products config:type="list">
+       <product>SLES</product>
+     </products>
+   </software>
+   <upgrade>
+     <stop_on_solver_conflict config:type="boolean">true</stop_on_solver_conflict>
+   </upgrade>
+   <backup>
+     <sysconfig config:type="boolean">false</sysconfig>
+     <modified config:type="boolean">false</modified>
+     <remove_old config:type="boolean">true</remove_old>
+   </backup>
+   <networking>
+     <keep_install_network config:type="boolean">true</keep_install_network>
+     <start_immediately config:type="boolean">true</start_immediately>
+   </networking>
+	 <scripts>
+     <init-scripts config:type="list">
+       <listentry>
+         <interpreter>shell</interpreter>
+         <location>
+           http://sumacka01.ckalab.suse.com/pub/bootstrap/dc1-sles15-sp2-prod.sh
+         </location>
+       </listentry>
+       <listentry>
+         <filename>suma_handling</filename>
+         <interpreter>shell</interpreter>
+         <source><![CDATA[#!/bin/bash
+zypper removerepo \
+dc1-sles15-sp2-prod-sle-product-sles15-sp2-updates_channel \
+dc1-sles15-sp2-prod-sle-module-basesystem15-sp2-pool_channel \
+dc1-sles15-sp2-prod-sle-module-basesystem15-sp2-updates_channel \
+dc1-sles15-sp2-prod-sle-module-server-applications15-sp2-pool_channel \
+dc1-sles15-sp2-prod-sle-module-server-applications15-sp2-updates_channel \
+dc1-sles15-sp2-prod-sles15-sp2_suse_manager_tools_update_channel \
+dc1-sles15-sp2-prod-sle-module-python2-15-sp2-pool_channel \
+dc1-sles15-sp2-prod-sle-module-python2-15-sp2-updates_channel
+         ]]></source>
+       </listentry>
+     </init-scripts>
+     <post-scripts config:type="list">
+     </post-scripts>
+   </scripts>
+</profile>
