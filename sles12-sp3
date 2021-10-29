@@ -221,6 +221,9 @@ dc1-sles12-sp3-prod_installation_update_channel
         ]]></source>
       </listentry>
     </init-scripts>
+    
+    Next Change
+    
     <post-scripts config:type="list">
       <script>
         <network_needed config:type="boolean">true</network_needed>
